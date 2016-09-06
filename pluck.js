@@ -1,11 +1,19 @@
-var pluck = LocalCollection.Cursor.prototype.pluck;
+(function() {
+  var fakeCollection = new Mongo.Collection("__fake_collection" + Random.id());
 
-if (!(pluck && pluck.constructor && pluck.constructor === Function)) {
-  LocalCollection.Cursor.prototype.pluck = function(key) {
-    var res = [];
-    this.forEach(function(doc) {
-      res.push(doc[key]);
-    });
-    return res;
-  };
-}
+  fakeCollection.findOne();
+
+  var cursor = Object.getPrototypeOf(fakeCollection.find(null)).constructor;
+
+  if (!(cursor.pluck)) {
+    cursor.prototype.pluck = function(prop) {
+      if (prop == null) {
+        return [];
+      } else {
+        return this.map(function(item) {
+          return item[prop];
+        });
+      }
+    }
+  }
+})();
