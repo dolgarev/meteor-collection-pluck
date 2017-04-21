@@ -1,5 +1,5 @@
 (function() {
-  var fakeCollection = new Mongo.Collection("__fake_collection" + Random.id());
+  var fakeCollection = new Mongo.Collection("__fake_collection__" + Random.id());
 
   fakeCollection.findOne();
 
