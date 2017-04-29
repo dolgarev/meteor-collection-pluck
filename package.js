@@ -1,7 +1,7 @@
 Package.describe({
   name: 'liberation:collection-pluck',
   summary: 'Adds a method "pluck" to Collections',
-  version: '1.1.1',
+  version: '1.1.2',
   git: 'https://github.com/dolgarev/meteor-collection-pluck.git'
 });
 
